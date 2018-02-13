@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, time
 import investigate
 from urllib2 import Request, urlopen
 
@@ -29,7 +29,18 @@ token = '27c8e6d7-0ed4-43f6-8fb6-c794b21e9c04'
 headers = {
 	'Authorization': 'Bearer ' + token
 }
-request = Request('https://investigate.api.umbrella.com/timeline/176.9.31.251', headers=headers)
-response_body = urlopen(request).read()
+counter = 0;
+with open ('IPCheckResults.txt', 'a') as resultsFile:
+	for ip in domains:
+		#ip = '176.9.31.251'
+		counter = counter + 1
+		if counter==3:
+			time.sleep(2)
+			counter = 0
+		request = Request('https://investigate.api.umbrella.com/timeline/' + ip, headers=headers)
+		response_body = urlopen(request).read()
+		resultsFile.write(ip + ' , ' + response_body.split(",")[0][17:-2]  + '\n')
+	resultsFile.close()
 
-print "timeline:" + response_body
+#print type(response_body)
+print response_body.split(",")[0][17:-2]
