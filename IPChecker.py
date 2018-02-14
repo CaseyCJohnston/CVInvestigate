@@ -2,7 +2,10 @@ import sys, os, time
 import investigate
 from urllib2 import Request, urlopen
 
-api_key = '27c8e6d7-0ed4-43f6-8fb6-c794b21e9c04'
+with open ('APIKey.txt', 'r') as keyFile:
+	api_key = keyFile.read()
+
+print(api_key)
 
 #this will be a python script to check a domain or a file of domains
 
