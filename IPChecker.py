@@ -37,9 +37,10 @@ with open ('IPCheckResults.txt', 'a') as resultsFile:
 	for ip in domains:
 		#ip = '176.9.31.251'
 		counter = counter + 1
-		if counter==3:
-			time.sleep(2)
+		if counter==45:
+			time.sleep(1)
 			counter = 0
+#		print(ip + "\n")
 		request = Request('https://investigate.api.umbrella.com/timeline/' + ip, headers=headers)
 		response_body = urlopen(request).read()
 		resultsFile.write(ip + ' , ' + response_body.split(",")[0][17:-2]  + '\n')
