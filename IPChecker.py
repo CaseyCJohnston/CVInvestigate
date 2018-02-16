@@ -26,8 +26,6 @@ else:
 #print domains
 #for IP in domains:
 
-token = '27c8e6d7-0ed4-43f6-8fb6-c794b21e9c04'
-
 #MAKE SURE THERE IS A SPACE AFTER BEARER! IT WILL DRIVE YOU CRAZY TRYING TO DEBUG THAT
 headers = {
 	'Authorization': 'Bearer ' + token
