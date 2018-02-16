@@ -3,7 +3,7 @@ import investigate
 from urllib2 import Request, urlopen
 
 with open ('APIKey.txt', 'r') as keyFile:
-	api_key = keyFile.read()
+	api_key = keyFile.read()[:-1]
 
 print(api_key)
 
@@ -28,16 +28,16 @@ else:
 
 #MAKE SURE THERE IS A SPACE AFTER BEARER! IT WILL DRIVE YOU CRAZY TRYING TO DEBUG THAT
 headers = {
-	'Authorization': 'Bearer ' + token
+	'Authorization': 'Bearer ' + api_key
 }
 counter = 0;
 with open ('IPCheckResults.txt', 'a') as resultsFile:
 	for ip in domains:
 		#ip = '176.9.31.251'
-		counter = counter + 1
-		if counter==45:
-			time.sleep(1)
-			counter = 0
+#		counter = counter + 1
+#		if counter==45:
+#			time.sleep(1)
+#			counter = 0
 #		print(ip + "\n")
 		request = Request('https://investigate.api.umbrella.com/timeline/' + ip, headers=headers)
 		response_body = urlopen(request).read()
