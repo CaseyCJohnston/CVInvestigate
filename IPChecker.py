@@ -41,7 +41,7 @@ with open ('IPCheckResults.txt', 'a') as resultsFile:
 #		print(ip + "\n")
 		request = Request('https://investigate.api.umbrella.com/timeline/' + ip, headers=headers)
 		response_body = urlopen(request).read()
-		resultsFile.write(ip + ' , ' + response_body.split(",")[0][17:-2]  + '\n')
+		resultsFile.write(ip + ' , ' + response_body.split(",")[0][17:-2]  + '\r\n')
 	resultsFile.close()
 
 #print type(response_body)
